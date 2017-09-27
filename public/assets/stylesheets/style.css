@@ -1,0 +1,13 @@
+/*---------VARIABLES---------*/
+/*---------MAIN---------*/
+body {
+  background-color: white;
+  font-family: helvetica;
+  color: #151515; }
+
+.btn {
+  padding: 10px 20px;
+  background-color: #9a9a9a;
+  color: white; }
+  .btn:hover, .btn:focus {
+    background-color: #acacac; }

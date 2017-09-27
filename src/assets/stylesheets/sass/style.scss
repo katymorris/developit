@@ -1,0 +1,21 @@
+@import 'partials/_variables';
+@import 'partials/_mixins';
+/*---------MAIN---------*/
+
+body {
+	background-color: $bgColor;
+  font-family: helvetica;
+  @include default-text-color($black);
+}
+.btn {
+  padding: 10px 20px;
+  background-color: #9a9a9a;
+  color: white;
+  &:hover, &:focus {
+    background-color: #acacac;
+  }
+}
+body > .container > .form > .btn {
+
+}
+
