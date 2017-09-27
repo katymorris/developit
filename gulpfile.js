@@ -2,8 +2,6 @@ const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
 const uglify = require('gulp-uglify');
 const sass = require('gulp-sass');
-const concat = require('gulp-concat');
-const pug = require('gulp-pug');
 const babel = require('gulp-babel');
 const streamqueue  = require('streamqueue');
 
@@ -26,12 +24,12 @@ gulp.task('message', function() {
 });
 
 //Copy all HTML files
-gulp.task('copyHTML', function() {
+gulp.task('copyHTMLViews', function() {
 	gulp.src('src/views/*.html')
 	.pipe(gulp.dest('public/views'));
 });
 //Copy entry file file
-gulp.task('copyHTML', function() {
+gulp.task('copyEntryHTML', function() {
 	gulp.src('src/index.html')
 	.pipe(gulp.dest('public'));
 });
@@ -41,7 +39,6 @@ gulp.task('imageMin', () =>
         .pipe(imagemin())
         .pipe(gulp.dest('public/assets/images'))
 );
-
 // Complie Sass
 gulp.task('sass', function() {
 	gulp.src('src/assets/stylesheets/sass/*.scss')
@@ -90,7 +87,7 @@ gulp.task('partialScripts', function() {
     }))
 	.pipe(gulp.dest('public/assets/javascripts/partials'));
 });
-gulp.task('default', ['message', 'copyHTML', 'imageMin', 'css', 'sass', 'customScripts', 'vendorScripts', 'partialScripts']);
+gulp.task('default', ['message', 'copyHTMLViews', 'copyEntryHTML', 'imageMin', 'css', 'sass', 'customScripts', 'vendorScripts', 'partialScripts']);
 
 gulp.task('watch', function() {
 	gulp.watch('src/js/*.js', ['custom-scripts']);
@@ -98,5 +95,6 @@ gulp.task('watch', function() {
 	gulp.watch('src/images/*', ['imageMin']);
 	gulp.watch('src/assets/stylesheets/sass/*.scss', ['sass']);
 	gulp.watch('src/assets/stylesheets/sass/partials/*.scss', ['sass']);
-	gulp.watch('src/*.html', ['copyHTML']);
+	gulp.watch('src/*.html', ['copyEntryHTML']);
+	gulp.watch('src/views/*.html', ['copyHTMLViews']);
 });
